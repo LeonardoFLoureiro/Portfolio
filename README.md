@@ -8,4 +8,5 @@ O Arquivo TP3_Criptografia_Compactacao contêm códigos feitos na linguagem JAVA
 
 O Arquivo rpg contém um código experimental a respeito de Interface Gráfica feita em JAVA, também possui conexão a Banco de dados usando PostgresSQL.
 
+O Arquivo Aplicativo_divide_conta_flutter contém o arquivo main de um programa introdutório da matéria de Desenvolvimento Mobile.
 
