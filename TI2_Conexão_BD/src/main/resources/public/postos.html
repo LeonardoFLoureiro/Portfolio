@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <title>Teste do site</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width = device-width,initial-scale =1.0,maximum-scale=1.0">
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <header>
+        <div class="center">
+            <div class="logo">
+                <div class="logodentro">
+                    <img src="img/EasyGasFT.png" width="140" height="120">
+                </div>
+
+            </div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="postos.html">Postos</a>
+                <a href="sobrenos.html">Sobre Nós</a>
+                <a href="duvidas.html">Dúvidas</a>
+                <a href="cadastro.html">Cadastro</a>
+                <a href="login.html">Login</a>
+            </div>
+            <div class="redes-sociais">
+                <ul>
+                    <li><a href=""><img src="./img/face.png" /></a></li>
+                    <li><a href=""><img src="./img/linkedin.png" /></a></li>
+                    <li><a href=""><img src="./img/tw.png" /></a></li>
+                    <li><a href=""><img src="./img/rss.png" /></a></li>
+                </ul>
+
+            </div>
+        </div>
+    </header>
+    <section class="sobre">
+
+        <div class="center">
+
+            <div class="localizacaopostos1">
+
+                
+
+                <div id="mapPostos" style="height: 500px"></div>
+
+                <table class="table text-center table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Marca</td>
+                            <td>Preco Etanol</td>
+                            <td>Preco Gasolina</td>
+                            <td>Endereço</td>
+                            <td>Distância</td>
+                            <td>Tempo Estimado</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tablePostos">
+                        <tr>
+                            <td colspan="6">
+                                Nenhum registro encontrado ainda...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <p>Coopright, todos os direitos reservados</p>
+        </div>
+
+    </footer>
+</body>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    handlePostos = (res) => { 
+        console.log(res);
+        $("#tablePostos").html("");
+        res.resultado.forEach(v => {
+            
+            L.marker([
+                v.resultadoBuscaCoordenada.geometry.location.lat,
+                v.resultadoBuscaCoordenada.geometry.location.lng
+            ]).bindTooltip(`Preço Etanol: ${v.precoEtanol}<br>Preço Gasolina: ${v.precoGasolina}<br>Distância: ${v.resultadoBuscaDistancia.distance.text}`, 
+            {
+                permanent: true, 
+                direction: 'right'
+            }).addTo(map);
+
+            let tableRow = `
+                <tr>
+                    <td>${v.marca}</td>
+                    <td>${v.precoEtanol}</td>
+                    <td>${v.precoGasolina}</td>
+                    <td>${v.enderecoPosto}</td>
+                    <td>${v.resultadoBuscaDistancia.distance.text}</td>
+                    <td>${v.resultadoBuscaDistancia.duration.text}</td>
+                </tr>
+            `;
+
+            $("#tablePostos").append(tableRow);
+        });
+    };
+
+    handleError = (res, status) => {
+        console.error(res);
+        
+        if(res.status == 401) {
+            alert("Usuário não logado");
+            window.location = '/login.html';
+        }
+    }
+    
+    let map = L.map('mapPostos').setView([-20,-40], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    if (navigator.geolocation) {
+        let lat, long;
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+            lat = pos.coords.latitude;
+            long = pos.coords.longitude;
+            console.log(lat, long, pos.coords.accuracy);
+            
+                lat = -19.944908;
+                long = -43.9320994;
+            
+            map.setView([lat, long], 15);
+            
+            $.ajax({
+                
+                url: "/postos",
+                dataType: "json",
+                data: {
+                    latitude: lat,
+                    longitude: long
+                },
+                success: handlePostos,
+                error: handleError
+            });
+            
+
+        }, console.error, { maximumAge: 0, enableHighAccuracy: true });
+    } else {
+        alert("Não foi possivel obter a localização");
+    }
+</script>
+
+</html>
