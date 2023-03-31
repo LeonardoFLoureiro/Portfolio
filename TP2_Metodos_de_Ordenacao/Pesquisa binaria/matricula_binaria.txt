@@ -1,0 +1,3 @@
+Matrícula:727225 - Leonardo Faina Loureiro
+Número de comparações: 2139
+Tempo de execução: 263
