@@ -6,4 +6,6 @@ O Arquivo TP2_Arvores_Binarias possui códigos em linguagem JAVA referente a cri
 
 O Arquivo TP3_Criptografia_Compactacao contêm códigos feitos na linguagem JAVA a respeito de alguns métodos de criptografia e compactação/decompactação de arquivos em memória secundária.
 
+O Arquivo rpg contém um código experimental a respeito de Interface Gráfica feita em JAVA, também possui conexão a Banco de dados usando PostgresSQL.
+
 
