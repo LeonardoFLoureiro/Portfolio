@@ -12,3 +12,4 @@ O Arquivo Aplicativo_divide_conta_flutter contém o arquivo main de um programa 
 
 O Arquivo TI2_Conexao_BD contém um site feito em HTML/CSS com backend feito em JAVA, integrado com a API do Google Maps e conexão com banco de dados Postgres. Uma demonstração pode ser encontrada no link: https://youtu.be/cUvz330sxLw .
 
+O Arquivo Algoritmos_IA possui alguns códigos desenvolvidos ou modificados em Python relativos a algoritmos de aprendizado de máquina e IA em um aspecto geral.
