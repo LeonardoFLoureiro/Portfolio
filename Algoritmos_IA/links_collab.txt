@@ -1,0 +1,14 @@
+Algoritmo Kmeans, e algumas discussões sobre(Trabalho de faculdade)
+https://colab.research.google.com/drive/1QlXkJeiv4VwxioSN-kVs0h39ywY-6_tV?usp=sharing
+
+Algoritmo Perceptron e algumas discussões sobre(Trabalho de faculdade)
+https://colab.research.google.com/drive/13BRw_yKe_q0lZnRWHuaxTtG0YrP1hst8?usp=sharing
+
+Algoritmo BackPropagation e algumas discussões sobre(Trabalho de faculdade)
+https://colab.research.google.com/drive/1ZwOBqZJFOy-TotQ2UMSaLyAjjOltOrUI?usp=sharing
+
+Algoritmo Apriori e algumas discussões sobre(Trabalho de faculdade)
+https://colab.research.google.com/drive/1nBgRM3aGaDsS8HoHkg8mOm3FXch7n7j0?usp=sharing
+
+Algoritmo Naive Bayes e algumas discussões sobre(Trabalho de faculdade)
+https://colab.research.google.com/drive/1t4aE2fscCmk8wFf6D8dn771mlidnZDbM?usp=sharing
